@@ -6,7 +6,11 @@ import shortid from "shortid";
 
 
 
+<<<<<<< HEAD
  export default async function handler(req, res){
+=======
+ export default async function hadler(req, res){
+>>>>>>> 70a81e948f125dcd32c3e0baf3bcafb03c4906c1
     if (req.method === "POST") {
         connetDB();
         const razorpay = new Razorpay({
