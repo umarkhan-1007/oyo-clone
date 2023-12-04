@@ -1,3 +1,4 @@
+"use client"
 import Filter from "@/Components/Filter";
 import Header1 from "@/Components/Header1";
 import Hotel from "@/Components/Hotel";
@@ -25,11 +26,14 @@ const Hotels = ({ hotels }) => {
   },);
 
   const handlerPrice = async () => {
-    const { data } = await axios.get(`api/facillities/range?price=${price}`);
+    const { data } = await axios.get(`/api/facillities/range?price=${price}`);
     if (data?.hotels) {
       setList(data?.hotels);
     }
   };
+
+
+  
 
   //
   return (

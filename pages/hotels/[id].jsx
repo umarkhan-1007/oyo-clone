@@ -40,7 +40,7 @@ const SingleHotel = ({ hotel }) => {
               <path
                 fill="none"
                 stroke="#F49242"
-                stroke-width="1.6"
+                strokeWidth="1.6"
                 d="M6.498 9.957l.431-.362c3.13-2.617 4.122-3.558 4.792-4.703.324-.555.479-1.07.479-1.595C12.2 1.907 10.999.8 9.425.8c-.891 0-1.77.38-2.337.996l-.588.636-.588-.636C5.344 1.18 4.466.8 3.575.8 2.001.8.8 1.908.8 3.297c0 .523.153 1.036.475 1.588C1.943 6.031 2.93 6.968 6.07 9.6l.428.357z"
               ></path>
             </svg>{" "}
@@ -63,9 +63,12 @@ const SingleHotel = ({ hotel }) => {
                       <li key={index} className="flex gap-2 items-center">
                         <span>
                           <Image
-                            className="h-5 aspect-auto"
+                          width={200}
+                          height={200}
+                            className="h-5 w-6 aspect-auto"
                             src={fac?.img}
                             alt=""
+                            property="hello"
                           />
                         </span>
                         <span>{fac?.name}</span>
@@ -86,7 +89,7 @@ const SingleHotel = ({ hotel }) => {
                 viewBox="0 0 16 16"
               >
                 {" "}
-                <g fill="none" fill-rule="nonzero">
+                <g fill="none" fillRule="nonzero">
                   {" "}
                   <path
                     fill="white"

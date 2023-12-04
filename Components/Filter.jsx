@@ -14,19 +14,20 @@ const Filter = ({price, setPrice, handlerPrice, checkList, setCheckList}) => {
       console.error(`error will factch facillities`);
     }
   };
+  
 
-  const handleCheckList = async (e) => {
-    let newList = [];
-
+  const handleCheckList = (e) => {
+    let newList = [...checkList]; 
+  
     if (e.target.checked) {
       newList.push(e.target.value);
-      setCheckList(newList);
-      return;
+    } else {
+      newList = newList.filter((i) => i !== e.target.value);
     }
-
-    newList = newList.filter((i) => i !== e.target.value);
+  
     setCheckList(newList);
   };
+  
 
   useEffect(() => {
     fatchFacillities();
@@ -57,7 +58,7 @@ const Filter = ({price, setPrice, handlerPrice, checkList, setCheckList}) => {
             onClick={handlerPrice}
           >
             Search
-          </button>
+          </button> 
         </div>
         <h1 className="text-xl font-semibold pl-5">Filter By Facillities :</h1>
         <section className=" my-5 pl-5">

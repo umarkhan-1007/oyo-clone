@@ -4,21 +4,26 @@ import Block from "./Block";
 import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const Header1 = () => {
-  let cookieValue;
-  if (typeof window !== "undefined") {
-    cookieValue = Cookies.get("user");
-  }
-  const router = useRouter();
+  const [loginAuth, setLoginAuth] = useState(false);
 
+  useEffect(() => {
+    if (Cookies) {
+      setLoginAuth(true);
+      return;
+    }
+    setLoginAuth(false);
+  }, []);
+  const router = useRouter();
   const handleLogout = () => {
     Cookies.remove("user");
     router.push("/");
   };
   return (
     <>
-      <section className="  flex h-20 border-b-2 items-center justify-between w-full pl-16">
+      <div className="  flex h-20 border-b-2 items-center justify-between w-full pl-16">
         <div>
           <Image
             src={"/oyo-logo.png"}
@@ -49,48 +54,46 @@ const Header1 = () => {
             para={"Call us to Book now"}
             img={"./phone-call.svg"}
           />
-          <div className="language flex border-r-2 items-center mr-2 ml-2">
-            <Image
-              src={"./globe.svg"}
-              alt="demo"
-              width={100}
-              height={100}
-              className="w-6 h-6 mr-2"
-            />
-            <h1 className="font-bold text-base">English</h1>
-            <Image
-              src={"./caret-down.svg"}
-              alt="demo"
-              width={100}
-              height={100}
-              className="w-6 h-6 mr-2"
-            />
-          </div>
-          <div className="sig-log flex items-center border-none mr-10 ml-2">
-            <Image
-              src={"/profile.gif"}
-              alt="profile"
-              width={100}
-              height={100}
-              className="w-10 h-10 mr-2"
-            />
-    
-            {cookieValue ? 
-              <div
-              className="font-bold text-base cursor-pointer"
-              onClick={handleLogout}
-              >
-                Logout
-              </div>
-             : 
+        </div>
+        <div className="language flex border-r-2 items-center mr-2 ml-2">
+          <Image
+            src={"./globe.svg"}
+            alt="demo"
+            width={100}
+            height={100}
+            className="w-6 h-6 mr-2"
+          />
+          <h1 className="font-bold text-base">English</h1>
+          <Image
+            src={"./caret-down.svg"}
+            alt="demo"
+            width={100}
+            height={100}
+            className="w-6 h-6 mr-2"
+          />
+        </div>
+        <div className="sig-log flex items-center border-none mr-10 ml-2">
+          <Image
+            src={"/profile.gif"}
+            alt="profile"
+            width={100}
+            height={100}
+            className="w-10 h-10 mr-2"
+          />
+          <div
+            className="font-bold text-base cursor-pointer"
+            onClick={handleLogout}
+          >
+            {loginAuth ? (
+              <h3>Logout</h3>
+            ) : (
               <Link href={"/login"}>
                 <button className="font-bold text-base">Login / Signup</button>
               </Link>
-            }
-            
+            )}
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 };
